@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "classicindustrialization:insulated_copper_cable"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "S": {
+      "item": "classicindustrialization:basic_substrate"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "RSR",
+    "CCC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:basic_circuit"
+  }
+}

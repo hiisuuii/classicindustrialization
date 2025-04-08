@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "classicindustrialization:drill"
+    },
+    "C": {
+      "item": "classicindustrialization:advanced_circuit"
+    },
+    "I": {
+      "tag": "c:gems/diamond"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    }
+  },
+  "pattern": [
+    " I ",
+    "IBI",
+    "CRC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:diamond_drill"
+  }
+}

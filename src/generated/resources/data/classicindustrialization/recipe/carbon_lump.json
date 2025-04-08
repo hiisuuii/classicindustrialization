@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "classicindustrialization:carbon_fiber"
+    },
+    {
+      "item": "classicindustrialization:carbon_fiber"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:carbon_lump"
+  }
+}

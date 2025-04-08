@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_battery": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:basic_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_circuit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:basic_circuit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_picks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#minecraft:pickaxes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "classicindustrialization:drill"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_circuit",
+      "has_picks",
+      "has_battery"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "classicindustrialization:drill"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_graphene": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:graphene"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_insulation": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#classicindustrialization:insulation"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "classicindustrialization:superconductor"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_graphene",
+      "has_insulation"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "classicindustrialization:superconductor"
+    ]
+  }
+}

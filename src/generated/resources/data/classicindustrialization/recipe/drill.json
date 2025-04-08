@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "classicindustrialization:basic_battery"
+    },
+    "C": {
+      "item": "classicindustrialization:basic_circuit"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "U": {
+      "tag": "c:ingots/copper"
+    }
+  },
+  "pattern": [
+    " I ",
+    "ICI",
+    "UBU"
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:drill"
+  }
+}

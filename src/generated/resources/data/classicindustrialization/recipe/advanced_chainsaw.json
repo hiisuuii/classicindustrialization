@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "classicindustrialization:alloy_plate"
+    },
+    "B": {
+      "item": "classicindustrialization:bigger_battery"
+    },
+    "C": {
+      "item": "classicindustrialization:advanced_circuit"
+    },
+    "D": {
+      "item": "classicindustrialization:chainsaw"
+    },
+    "L": {
+      "tag": "c:gems/lapis"
+    }
+  },
+  "pattern": [
+    " C ",
+    "LDL",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:advanced_chainsaw"
+  }
+}

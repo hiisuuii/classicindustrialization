@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_substrate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:basic_substrate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "classicindustrialization:basic_circuit"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_substrate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "classicindustrialization:basic_circuit"
+    ]
+  }
+}

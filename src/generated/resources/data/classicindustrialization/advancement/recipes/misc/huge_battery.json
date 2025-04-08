@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cable": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:superconductor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_glowstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:dusts/glowstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_redstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:dusts/redstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "classicindustrialization:huge_battery"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cable",
+      "has_glowstone",
+      "has_redstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "classicindustrialization:huge_battery"
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_circuit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:advanced_circuit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_diamond_pick": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:diamond_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_drill": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:drill"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "classicindustrialization:diamond_drill"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_diamond_pick",
+      "has_drill",
+      "has_circuit"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "classicindustrialization:diamond_drill"
+    ]
+  }
+}

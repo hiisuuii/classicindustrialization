@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "classicindustrialization:item/electric_sword",
+    "layer1": "classicindustrialization:item/electric_sword_blade",
+    "layer2": "classicindustrialization:item/electric_sword_overlay"
+  }
+}

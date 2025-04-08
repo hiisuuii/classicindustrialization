@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "classicindustrialization:basic_battery"
+    },
+    "C": {
+      "item": "classicindustrialization:advanced_circuit"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    }
+  },
+  "pattern": [
+    "ICI",
+    "IBI",
+    "R R"
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:jetpack"
+  }
+}

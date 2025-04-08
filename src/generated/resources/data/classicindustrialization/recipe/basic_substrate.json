@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:clay_ball"
+    },
+    "D": {
+      "tag": "c:dyes/green"
+    },
+    "G": {
+      "tag": "c:glass_blocks"
+    }
+  },
+  "pattern": [
+    " D ",
+    "GGG",
+    " C "
+  ],
+  "result": {
+    "count": 6,
+    "id": "classicindustrialization:basic_substrate"
+  }
+}

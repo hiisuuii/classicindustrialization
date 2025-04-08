@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "classicindustrialization:insulated_gold_cable"
+    },
+    "I": {
+      "item": "classicindustrialization:carbon_plate"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    }
+  },
+  "pattern": [
+    " C ",
+    "IRI",
+    "IRI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:bigger_battery"
+  }
+}

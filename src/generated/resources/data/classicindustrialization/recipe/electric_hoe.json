@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "classicindustrialization:basic_battery"
+    },
+    "C": {
+      "item": "classicindustrialization:basic_circuit"
+    },
+    "H": {
+      "item": "minecraft:iron_hoe"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "U": {
+      "tag": "c:ingots/copper"
+    }
+  },
+  "pattern": [
+    "  H",
+    "CI ",
+    "BU "
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:electric_hoe"
+  }
+}

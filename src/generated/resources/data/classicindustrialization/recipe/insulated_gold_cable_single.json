@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "classicindustrialization:uninsulated_gold_cable"
+    },
+    {
+      "tag": "classicindustrialization:insulation"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:insulated_gold_cable"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_carbon": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:carbon_plate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_circuit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:advanced_circuit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_drill": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:advanced_drill"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "classicindustrialization:nano_drill"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_carbon",
+      "has_drill",
+      "has_circuit"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "classicindustrialization:nano_drill"
+    ]
+  }
+}

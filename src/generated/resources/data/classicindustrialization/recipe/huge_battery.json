@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "classicindustrialization:superconductor"
+    },
+    "G": {
+      "tag": "c:dusts/glowstone"
+    },
+    "R": {
+      "tag": "c:storage_blocks/redstone"
+    }
+  },
+  "pattern": [
+    "GCG",
+    "CRC",
+    "GCG"
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:huge_battery"
+  }
+}

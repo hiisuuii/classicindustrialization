@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "c:ingots/gold"
+    },
+    "R": {
+      "tag": "classicindustrialization:insulation"
+    }
+  },
+  "pattern": [
+    "RRR",
+    "CCC",
+    "RRR"
+  ],
+  "result": {
+    "count": 6,
+    "id": "classicindustrialization:insulated_gold_cable"
+  }
+}

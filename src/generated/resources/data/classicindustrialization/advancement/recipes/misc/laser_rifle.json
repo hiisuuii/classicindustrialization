@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_adv_alloy": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:alloy_plate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "classicindustrialization:laser_rifle"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_adv_alloy"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "classicindustrialization:laser_rifle"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "classicindustrialization:alloy_plate"
+    },
+    "B": {
+      "item": "classicindustrialization:bigger_battery"
+    },
+    "C": {
+      "item": "classicindustrialization:insulated_gold_cable"
+    },
+    "D": {
+      "tag": "c:gems/diamond"
+    },
+    "R": {
+      "tag": "c:storage_blocks/redstone"
+    }
+  },
+  "pattern": [
+    "RRD",
+    "ABC",
+    " AA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:laser_rifle"
+  }
+}

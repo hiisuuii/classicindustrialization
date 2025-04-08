@@ -1,0 +1,14 @@
+// 1.21.1	2025-04-01T00:45:37.4336933	Tags for minecraft:item mod id classicindustrialization
+deeffe0fd57a61fd3157a481cf9aa72b2ecf48c7 data/classicindustrialization/tags/item/insulation.json
+8ec4a49f61b05b229daab7e335dc8086093adb3d data/c/tags/item/dusts/coal.json
+07782c332ad5ddc5d6de080d7eb4c0a6f0ac9dde data/c/tags/item/dusts/copper.json
+7538650a7def70efd7acef1a044f7ed77b52d374 data/c/tags/item/dusts/gold.json
+7c982d82abd816fcaad2826f72d8c2628a429f2e data/c/tags/item/dusts/iron.json
+4795c017db353c11a0e8169662d664ee25dda7ae data/c/tags/item/dusts/tin.json
+7c2697722eb364054af5a2f1ee1220068ac025ae data/c/tags/item/ingots.json
+7c2697722eb364054af5a2f1ee1220068ac025ae data/c/tags/item/ingots/tin.json
+d644df77c181062ee828ccea73cfb3a6cddd5f13 data/c/tags/item/ores.json
+d644df77c181062ee828ccea73cfb3a6cddd5f13 data/c/tags/item/ores/tin.json
+eb665f2cc7967fa53dfc71533f1715666f456560 data/c/tags/item/ores_in_ground/deepslate.json
+c4f8779e261f06b9e5152b2ca02dff123825e03f data/c/tags/item/ores_in_ground/stone.json
+d644df77c181062ee828ccea73cfb3a6cddd5f13 data/c/tags/item/ore_rates/dense.json

@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_battery": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:basic_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_circuit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "classicindustrialization:basic_circuit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_hoes": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#minecraft:hoes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "classicindustrialization:electric_hoe"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_circuit",
+      "has_hoes",
+      "has_battery"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "classicindustrialization:electric_hoe"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+// 1.21.1	2025-03-31T21:18:06.1449013	Tags for minecraft:block mod id classicindustrialization
+d644df77c181062ee828ccea73cfb3a6cddd5f13 data/c/tags/block/ores.json
+d644df77c181062ee828ccea73cfb3a6cddd5f13 data/c/tags/block/ores/tin.json
+eb665f2cc7967fa53dfc71533f1715666f456560 data/c/tags/block/ores_in_ground/deepslate.json
+c4f8779e261f06b9e5152b2ca02dff123825e03f data/c/tags/block/ores_in_ground/stone.json
+d644df77c181062ee828ccea73cfb3a6cddd5f13 data/c/tags/block/ore_rates/dense.json
+d644df77c181062ee828ccea73cfb3a6cddd5f13 data/minecraft/tags/block/incorrect_for_gold_tool.json
+d644df77c181062ee828ccea73cfb3a6cddd5f13 data/minecraft/tags/block/incorrect_for_wooden_tool.json
+d644df77c181062ee828ccea73cfb3a6cddd5f13 data/minecraft/tags/block/mineable/pickaxe.json
+d644df77c181062ee828ccea73cfb3a6cddd5f13 data/minecraft/tags/block/needs_stone_tool.json
+d644df77c181062ee828ccea73cfb3a6cddd5f13 data/minecraft/tags/block/overworld_carver_replaceables.json
+c4f8779e261f06b9e5152b2ca02dff123825e03f data/minecraft/tags/block/snaps_goat_horn.json

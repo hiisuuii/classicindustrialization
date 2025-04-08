@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "classicindustrialization:carbon_plate"
+    },
+    "B": {
+      "item": "classicindustrialization:bigger_battery"
+    },
+    "C": {
+      "item": "classicindustrialization:advanced_circuit"
+    },
+    "D": {
+      "item": "classicindustrialization:advanced_drill"
+    },
+    "L": {
+      "item": "classicindustrialization:insulated_gold_cable"
+    }
+  },
+  "pattern": [
+    " C ",
+    "LDL",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:nano_drill"
+  }
+}
