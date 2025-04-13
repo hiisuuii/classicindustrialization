@@ -1,0 +1,12 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "classicindustrialization:item/vajra"
+    },
+    "display": {
+		"gui": {
+			"rotation": [0, 180, 0],
+			"translation": [0, 0, 0]
+		}
+    }
+}

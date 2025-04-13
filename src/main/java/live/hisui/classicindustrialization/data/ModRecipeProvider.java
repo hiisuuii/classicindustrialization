@@ -131,6 +131,17 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('B', ModItems.BASIC_BATTERY)
                 .unlockedBy("has_circuit",has(ModItems.ADV_CIRCUIT))
                 .unlockedBy("has_battery",has(ModItems.BASIC_BATTERY)).save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ELECTRIC_SWORD)
+                .pattern("GD ")
+                .pattern("GD ")
+                .pattern("CBC")
+                .define('C', ModItems.CARBON_PLATE)
+                .define('G',Tags.Items.DUSTS_GLOWSTONE)
+                .define('D', Tags.Items.GEMS_DIAMOND)
+                .define('B', ModItems.EVEN_BIGGER_BATTERY)
+                .unlockedBy("has_plate",has(ModItems.CARBON_PLATE))
+                .unlockedBy("has_glowstone",has(Tags.Items.DUSTS_GLOWSTONE))
+                .unlockedBy("has_battery",has(ModItems.EVEN_BIGGER_BATTERY)).save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.LASER_RIFLE)
                 .pattern("RRD")
                 .pattern("ABC")
@@ -290,6 +301,18 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_insulation", has(ModTags.Items.INSULATION))
                 .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(ClassicIndustrialization.MODID,"insulated_gold_cable_single"));
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.RAW_TIN_BLOCK)
+                .requires(ModItems.RAW_TIN, 9)
+                .unlockedBy("has_item",has(ModItems.RAW_TIN))
+                .save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TIN_BLOCK)
+                .requires(Ingredient.of(ModTags.Items.INGOTS_TIN), 9)
+                .unlockedBy("has_item",has(ModTags.Items.INGOTS_TIN))
+                .save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BRONZE_BLOCK)
+                .requires(Ingredient.of(ModTags.Items.INGOTS_BRONZE), 9)
+                .unlockedBy("has_item",has(ModTags.Items.INGOTS_BRONZE))
+                .save(recipeOutput);
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.CARBON_FIBRE)
                 .requires(ModItems.CARBON_DUST, 4)
                 .unlockedBy("has_carbon",has(ModItems.CARBON_DUST))
@@ -298,13 +321,37 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(ModItems.CARBON_FIBRE, 2)
                 .unlockedBy("has_carbon",has(ModItems.CARBON_FIBRE))
                 .save(recipeOutput);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BRONZE_DUST)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BRONZE_DUST, 4)
                 .requires(ModTags.Items.DUSTS_TIN)
                 .requires(Ingredient.of(ModTags.Items.DUSTS_COPPER), 3)
                 .unlockedBy("has_copper",has(ModTags.Items.DUSTS_COPPER))
                 .unlockedBy("has_tin",has(ModTags.Items.DUSTS_TIN))
                 .save(recipeOutput);
 
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.IRON_DUST), RecipeCategory.MISC, Items.IRON_INGOT,
+                        0.7f, 200)
+                .unlockedBy("has_dust",has(ModItems.IRON_DUST))
+                .save(recipeOutput,"iron_dust_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItems.IRON_DUST), RecipeCategory.MISC, Items.IRON_INGOT,
+                        0.7f, 100)
+                .unlockedBy("has_dust",has(ModItems.IRON_DUST))
+                .save(recipeOutput,"iron_dust_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.COPPER_DUST), RecipeCategory.MISC, Items.COPPER_INGOT,
+                        0.7f, 200)
+                .unlockedBy("has_dust",has(ModItems.COPPER_DUST))
+                .save(recipeOutput,"copper_dust_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItems.COPPER_DUST), RecipeCategory.MISC, Items.COPPER_INGOT,
+                        0.7f, 100)
+                .unlockedBy("has_dust",has(ModItems.COPPER_DUST))
+                .save(recipeOutput,"copper_dust_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.GOLD_DUST), RecipeCategory.MISC, Items.GOLD_INGOT,
+                        0.7f, 200)
+                .unlockedBy("has_dust",has(ModItems.GOLD_DUST))
+                .save(recipeOutput,"gold_dust_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItems.GOLD_DUST), RecipeCategory.MISC, Items.GOLD_INGOT,
+                        0.7f, 100)
+                .unlockedBy("has_dust",has(ModItems.GOLD_DUST))
+                .save(recipeOutput,"gold_dust_blasting");
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.BRONZE_DUST), RecipeCategory.MISC, ModItems.BRONZE_INGOT.get(),
                         0.7f, 200)
                 .unlockedBy("has_dust",has(ModItems.BRONZE_DUST))
@@ -321,6 +368,14 @@ public class ModRecipeProvider extends RecipeProvider {
                         0.7f, 100)
                 .unlockedBy("has_dust",has(ModItems.TIN_DUST))
                 .save(recipeOutput,"tin_dust_blasting");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.RAW_TIN), RecipeCategory.MISC, ModItems.TIN_INGOT.get(),
+                        0.7f, 200)
+                .unlockedBy("has_ore",has(ModItems.RAW_TIN))
+                .save(recipeOutput,"tin_raw_smelting");
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModItems.RAW_TIN), RecipeCategory.MISC, ModItems.TIN_INGOT.get(),
+                        0.7f, 100)
+                .unlockedBy("has_ore",has(ModItems.RAW_TIN))
+                .save(recipeOutput,"tin_raw_blasting");
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.TIN_ORE), RecipeCategory.MISC, ModItems.TIN_INGOT.get(),
                         0.7f, 200)
                 .unlockedBy("has_ore",has(ModItems.TIN_ORE))

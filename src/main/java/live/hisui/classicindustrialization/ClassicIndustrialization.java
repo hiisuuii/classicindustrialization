@@ -3,13 +3,19 @@ package live.hisui.classicindustrialization;
 import com.mojang.logging.LogUtils;
 import live.hisui.classicindustrialization.component.ModDataComponents;
 import live.hisui.classicindustrialization.entity.client.LaserEntityRenderer;
+import live.hisui.classicindustrialization.item.EnergyStoringItem;
 import live.hisui.classicindustrialization.item.IToggleClick;
 import live.hisui.classicindustrialization.network.ItemTogglePacket;
 import live.hisui.classicindustrialization.network.UpdateInputPacket;
+import live.hisui.classicindustrialization.render.EquipmentRenderLayer;
 import live.hisui.classicindustrialization.util.client.InputHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.inventory.Slot;
@@ -25,6 +31,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -36,7 +43,6 @@ import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 
 import java.util.Optional;
-import java.util.concurrent.ThreadLocalRandom;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ClassicIndustrialization.MODID)
@@ -172,6 +178,23 @@ public class ClassicIndustrialization
     {
 
         @SubscribeEvent
+        public static void registerLayers(EntityRenderersEvent.AddLayers event){
+            var context = event.getContext();
+            PlayerRenderer renderer = event.getSkin(PlayerSkin.Model.WIDE);
+            renderer.addLayer(new EquipmentRenderLayer<>(renderer,
+                    new HumanoidArmorModel(context.bakeLayer(ModelLayers.PLAYER_INNER_ARMOR)),
+                    new HumanoidArmorModel(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)),
+                    context.getModelManager()
+                    ));
+            renderer = event.getSkin(PlayerSkin.Model.SLIM);
+            renderer.addLayer(new EquipmentRenderLayer<>(renderer,
+                    new HumanoidArmorModel(context.bakeLayer(ModelLayers.PLAYER_SLIM_INNER_ARMOR)),
+                    new HumanoidArmorModel(context.bakeLayer(ModelLayers.PLAYER_SLIM_OUTER_ARMOR)),
+                    context.getModelManager()
+            ));
+        }
+
+        @SubscribeEvent
         public static void registerItemColors(RegisterColorHandlersEvent.Item event){
             event.register(
                     (stack, tintIndex) -> {
@@ -192,6 +215,13 @@ public class ClassicIndustrialization
                         }
                         return -1;
                     }, ModItems.ELECTRIC_SWORD.get());
+            event.register((stack, idx) -> {
+                if(stack.getItem() instanceof EnergyStoringItem energyStoringItem){
+                    return 0xFF000000 | Mth.hsvToRgb(0.0f,
+                            Math.max(0.3f, ((float)energyStoringItem.getEnergyStored(stack) / energyStoringItem.getMaxEnergyStored(stack))), 1.0f);
+                }
+                return -1;
+            }, ModItems.HUGE_BATTERY.get());
         }
 
         @SubscribeEvent

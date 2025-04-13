@@ -16,6 +16,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class LaserRifleItem extends EnergyStoringItem{
@@ -31,7 +32,7 @@ public class LaserRifleItem extends EnergyStoringItem{
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
         if(oldStack.getItem() instanceof LaserRifleItem oldRifle && newStack.getItem() instanceof LaserRifleItem newRifle) {
-            if(!oldStack.get(ModDataComponents.LASER_MODE_ALT).equals(newStack.get(ModDataComponents.LASER_MODE_ALT))) {
+            if(!Objects.equals(oldStack.get(ModDataComponents.LASER_MODE_ALT), newStack.get(ModDataComponents.LASER_MODE_ALT))) {
                 return true;
             }
         }

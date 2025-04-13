@@ -32,7 +32,8 @@ import java.util.Optional;
 public class ElectricSwordItem extends ElectricToolItem {
 
     private static final List<ItemAbility> ACTIONS = List.of(
-            ItemAbilities.SWORD_DIG
+            ItemAbilities.SWORD_DIG,
+            ItemAbilities.SWORD_SWEEP
     );
 
     public ElectricSwordItem(Properties properties, int maxEnergy){

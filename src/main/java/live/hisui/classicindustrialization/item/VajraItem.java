@@ -31,6 +31,8 @@ import java.util.Optional;
 
 public class VajraItem extends ElectricToolItem {
 
+    // TODO: Silk touch shouldnt work without power
+
     private static final List<ItemAbility> ACTIONS = List.of(
             ItemAbilities.AXE_SCRAPE,
             ItemAbilities.AXE_STRIP,

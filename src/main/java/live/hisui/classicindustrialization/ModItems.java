@@ -51,6 +51,8 @@ public class ModItems {
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(ClassicIndustrialization.MODID);
 
+
+    //region EQUIPMENT
     public static final DeferredItem<Item> ELECTRIC_HOE = register("electric_hoe",
             () -> new ElectricHoeItem(Tiers.IRON, new Item.Properties(), BlockTags.MINEABLE_WITH_HOE, 12, 2*32000));
     public static final DeferredItem<Item> CHAINSAW = register("chainsaw",
@@ -85,25 +87,32 @@ public class ModItems {
                     List.of(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.MINEABLE_WITH_AXE,
                             BlockTags.MINEABLE_WITH_HOE, BlockTags.MINEABLE_WITH_SHOVEL,
                             BlockTags.SWORD_EFFICIENT),1800, 2*256000*4));
-
     public static final DeferredItem<Item> LASER_RIFLE = register("laser_rifle",
-            () -> new LaserRifleItem(200000,8000));
+            () -> new LaserRifleItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON),
+                    200000,8000));
     public static final DeferredItem<Item> ELECTRIC_SWORD = register("electric_sword",
             () -> new ElectricSwordItem(new Item.Properties().rarity(Rarity.UNCOMMON), 200000));
-
-    public static final DeferredItem<Item> SMALL_BATTERY = register("small_battery",
-            () -> new BatteryItem(32000, 4000));
-    public static final DeferredItem<Item> BASIC_BATTERY = register("basic_battery",
-            () -> new BatteryItem(64000, 8000));
-    public static final DeferredItem<Item> EVEN_BIGGER_BATTERY = register("bigger_battery",
-            () -> new BatteryItem(128000*2, 16000));
-    public static final DeferredItem<Item> HUGE_BATTERY = register("huge_battery",
-            () -> new BatteryItem(256000*4, 32000));
-
     public static final DeferredItem<Item> GRAVI_CHESTPLATE = register("gravichest",
-            () -> new GraviChestplateItem((int) Math.pow(2,21), 64000));
+            () -> new GraviChestplateItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC),
+                    (int) Math.pow(2,21), 64000));
     public static final DeferredItem<Item> JETPACK = register("jetpack",
             () -> new JetpackItem(100000, 64000));
+
+    //endregion
+
+    //region BATTERIES
+    public static final DeferredItem<Item> SMALL_BATTERY = register("small_battery",
+            () -> new BatteryItem(32000, 200)); // 8 SECONDS TO DEPLETE
+    public static final DeferredItem<Item> BASIC_BATTERY = register("basic_battery",
+            () -> new BatteryItem(64000, 400)); // 8 SECONDS TO DEPLETE
+    public static final DeferredItem<Item> EVEN_BIGGER_BATTERY = register("bigger_battery",
+            () -> new BatteryItem(128000*2, 1600)); // 8 SECONDS TO DEPLETE
+    public static final DeferredItem<Item> HUGE_BATTERY = register("huge_battery",
+            () -> new BatteryItem(256000*4, 6400)); // 8 SECONDS TO DEPLETE
+    public static final DeferredItem<Item> CREATIVE_BATTERY = register("creative_battery",
+            () -> new CreativeBatteryItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)
+                    .component(ModDataComponents.ENERGY_STORAGE, Integer.MAX_VALUE), Integer.MAX_VALUE, Integer.MAX_VALUE)); // basically infinite
+    //endregion
 
     //region CABLES
     public static final DeferredItem<Item> UNINSULATED_COPPER_CABLE = register("uninsulated_copper_cable",
@@ -171,6 +180,14 @@ public class ModItems {
             () -> new BlockItem(ModBlocks.TIN_ORE.get(), new Item.Properties()));
     public static final DeferredItem<Item> DEEPSLATE_TIN_ORE = register("deepslate_tin_ore",
             () -> new BlockItem(ModBlocks.DEEPSLATE_TIN_ORE.get(), new Item.Properties()));
+    public static final DeferredItem<Item> RAW_TIN_BLOCK = register("raw_tin_block",
+            () -> new BlockItem(ModBlocks.RAW_TIN_BLOCK.get(), new Item.Properties()));
+    public static final DeferredItem<Item> BRONZE_BLOCK = register("bronze_block", // TODO: Needs some texture help
+            () -> new BlockItem(ModBlocks.BRONZE_BLOCK.get(), new Item.Properties()));
+    public static final DeferredItem<Item> TIN_BLOCK = register("tin_block",
+            () -> new BlockItem(ModBlocks.TIN_BLOCK.get(), new Item.Properties()));
+    public static final DeferredItem<Item> RAW_TIN = register("raw_tin", // TODO: Still a little green
+            () -> new Item(new Item.Properties()));
 
     private static DeferredItem<Item> register(String name, Supplier<Item> supp) {
         return ITEMS.register(name, supp);

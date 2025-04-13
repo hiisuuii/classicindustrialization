@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "classicindustrialization:bigger_battery"
+    },
+    "C": {
+      "item": "classicindustrialization:carbon_plate"
+    },
+    "D": {
+      "tag": "c:gems/diamond"
+    },
+    "G": {
+      "tag": "c:dusts/glowstone"
+    }
+  },
+  "pattern": [
+    "GD ",
+    "GD ",
+    "CBC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "classicindustrialization:electric_sword"
+  }
+}

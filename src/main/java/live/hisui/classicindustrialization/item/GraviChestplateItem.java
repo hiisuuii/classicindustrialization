@@ -30,7 +30,7 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Optional;
 
-public class GraviChestplateItem extends EnergyStoringItem implements Equipable, IToggleClick {
+public class GraviChestplateItem extends EnergyStoringItem implements Equipable, IToggleClick, INotArmorButRendersLikeArmor {
     public GraviChestplateItem(int maxCapacity, int transferRate) {
         super(maxCapacity, transferRate);
     }

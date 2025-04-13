@@ -1,6 +1,5 @@
 package live.hisui.classicindustrialization.item;
 
-import live.hisui.classicindustrialization.ClassicIndustrialization;
 import live.hisui.classicindustrialization.capability.CustomComponentEnergyStorage;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -94,5 +93,13 @@ public class EnergyStoringItem extends Item {
         return Optional.ofNullable(stack.getCapability(Capabilities.EnergyStorage.ITEM))
                 .map(IEnergyStorage::getMaxEnergyStored)
                 .orElse(0);
+    }
+
+    public boolean canReceiveEnergy(ItemStack stack){
+        return getEnergyStored(stack) < getMaxEnergyStored(stack);
+    }
+
+    public int getTransferRate() {
+        return this.transferRate;
     }
 }

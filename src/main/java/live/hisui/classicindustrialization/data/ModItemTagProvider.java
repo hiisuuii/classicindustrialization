@@ -9,6 +9,7 @@ import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -31,11 +32,15 @@ public class ModItemTagProvider extends ItemTagsProvider {
         copy(Tags.Blocks.ORES_IN_GROUND_STONE, Tags.Items.ORES_IN_GROUND_STONE);
         copy(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE, Tags.Items.ORES_IN_GROUND_DEEPSLATE);
         tag(ModTags.Items.INGOTS_TIN).add(ModItems.TIN_INGOT.get());
+        tag(ModTags.Items.INGOTS_BRONZE).add(ModItems.BRONZE_INGOT.get());
         tag(ModTags.Items.DUSTS_TIN).add(ModItems.TIN_DUST.get());
         tag(ModTags.Items.DUSTS_IRON).add(ModItems.IRON_DUST.get());
         tag(ModTags.Items.DUSTS_GOLD).add(ModItems.GOLD_DUST.get());
         tag(ModTags.Items.DUSTS_COAL).add(ModItems.CARBON_DUST.get());
         tag(ModTags.Items.DUSTS_COPPER).add(ModItems.COPPER_DUST.get());
-        tag(Tags.Items.INGOTS).add(ModItems.TIN_INGOT.get());
+        tag(ModTags.Items.DUSTS_BRONZE).add(ModItems.BRONZE_DUST.get());
+        tag(Tags.Items.INGOTS).add(ModItems.TIN_INGOT.get())
+                .add(ModItems.BRONZE_INGOT.get());
+        tag(ModTags.Items.RAW_TIN).add(ModItems.RAW_TIN.get());
     }
 }

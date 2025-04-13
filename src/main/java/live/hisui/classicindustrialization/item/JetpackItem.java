@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
 
-public class JetpackItem  extends EnergyStoringItem implements Equipable, IToggleClick {
+public class JetpackItem  extends EnergyStoringItem implements Equipable, IToggleClick, INotArmorButRendersLikeArmor {
     public static final int ENERGY_PER_TICK = 5;
     public JetpackItem(int maxCapacity, int transferRate) {
         super(maxCapacity, transferRate);

@@ -22,6 +22,9 @@ public class ModTags {
         public static final TagKey<Item> ORES_TIN = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(
                 "c", "ores/tin"
         ));
+        public static final TagKey<Item> RAW_TIN = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(
+                "c", "raw_materials/tin"
+        ));
         public static final TagKey<Item> DUSTS_TIN = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(
                 "c", "dusts/tin"
         ));
