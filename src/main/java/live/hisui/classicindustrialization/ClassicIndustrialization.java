@@ -7,6 +7,7 @@ import live.hisui.classicindustrialization.item.EnergyStoringItem;
 import live.hisui.classicindustrialization.item.IToggleClick;
 import live.hisui.classicindustrialization.network.ItemTogglePacket;
 import live.hisui.classicindustrialization.network.UpdateInputPacket;
+import live.hisui.classicindustrialization.render.EquipmentModel;
 import live.hisui.classicindustrialization.render.EquipmentRenderLayer;
 import live.hisui.classicindustrialization.util.client.InputHandler;
 import net.minecraft.client.Minecraft;
@@ -121,8 +122,8 @@ public class ClassicIndustrialization
                 LayerDefinitions.OUTER_ARMOR_DEFORMATION), 64, 32);
         public static final LayerDefinition INNER_EQUIPMENT_LAYER_DEF = LayerDefinition.create(HumanoidArmorModel.createBodyLayer(
                 LayerDefinitions.INNER_ARMOR_DEFORMATION), 64, 32);
-        public static final ModelLayerLocation OUTER_EQUIPMENT_LAYER = new ModelLayerLocation(ClassicIndustrialization.modLoc("equipment_layer_outer"), "outer_armor");
-        public static final ModelLayerLocation INNER_EQUIPMENT_LAYER = new ModelLayerLocation(ClassicIndustrialization.modLoc("equipment_layer_inner"), "inner_armor");
+        public static final ModelLayerLocation OUTER_EQUIPMENT_LAYER = new ModelLayerLocation(ClassicIndustrialization.modLoc("equipment_layer_outer"), "outer_gear");
+        public static final ModelLayerLocation INNER_EQUIPMENT_LAYER = new ModelLayerLocation(ClassicIndustrialization.modLoc("equipment_layer_inner"), "inner_gear");
 
     }
 
@@ -197,14 +198,14 @@ public class ClassicIndustrialization
             var context = event.getContext();
             PlayerRenderer renderer = event.getSkin(PlayerSkin.Model.WIDE);
             renderer.addLayer(new EquipmentRenderLayer<>(renderer,
-                    new HumanoidArmorModel(context.bakeLayer(ClassicIndustrializationClient.INNER_EQUIPMENT_LAYER)),
-                    new HumanoidArmorModel(context.bakeLayer(ClassicIndustrializationClient.OUTER_EQUIPMENT_LAYER)),
+                    new EquipmentModel<>(context.bakeLayer(ClassicIndustrializationClient.INNER_EQUIPMENT_LAYER)),
+                    new EquipmentModel<>(context.bakeLayer(ClassicIndustrializationClient.OUTER_EQUIPMENT_LAYER)),
                     context.getModelManager()
                     ));
             renderer = event.getSkin(PlayerSkin.Model.SLIM);
             renderer.addLayer(new EquipmentRenderLayer<>(renderer,
-                    new HumanoidArmorModel(context.bakeLayer(ClassicIndustrializationClient.INNER_EQUIPMENT_LAYER)),
-                    new HumanoidArmorModel(context.bakeLayer(ClassicIndustrializationClient.OUTER_EQUIPMENT_LAYER)),
+                    new EquipmentModel<>(context.bakeLayer(ClassicIndustrializationClient.INNER_EQUIPMENT_LAYER)),
+                    new EquipmentModel<>(context.bakeLayer(ClassicIndustrializationClient.OUTER_EQUIPMENT_LAYER)),
                     context.getModelManager()
             ));
         }

@@ -51,12 +51,9 @@ public class EquipmentRenderLayer<T extends LivingEntity, M extends HumanoidMode
             if (armoritem.getEquipmentSlot() == slot) {
                 this.getParentModel().copyPropertiesTo(p_model);
                 this.setPartVisibility(p_model, slot);
-                net.minecraft.client.model.Model model = getArmorModelHook(livingEntity, itemstack, slot, p_model);
 
-                net.neoforged.neoforge.client.extensions.common.IClientItemExtensions extensions = net.neoforged.neoforge.client.extensions.common.IClientItemExtensions.of(itemstack);
-                extensions.setupModelAnimations(livingEntity, itemstack, slot, model, limbSwing, limbSwingAmount, partialTick, ageInTicks, netHeadYaw, headPitch);
                 ResourceLocation resourceLocation = ClassicIndustrialization.modLoc("textures/models/equipment/" + BuiltInRegistries.ITEM.getKey(itemstack.getItem()).getPath() + ".png");
-                this.renderModel(poseStack, bufferSource, packedLight, model, -1, resourceLocation);
+                this.renderModel(poseStack, bufferSource, packedLight, p_model, -1, resourceLocation);
 
             }
         }
