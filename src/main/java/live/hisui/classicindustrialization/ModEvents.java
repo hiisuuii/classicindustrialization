@@ -4,6 +4,8 @@ import live.hisui.classicindustrialization.capability.CustomComponentEnergyStora
 import live.hisui.classicindustrialization.component.ModDataComponents;
 import live.hisui.classicindustrialization.entity.client.LaserEntityModel;
 import live.hisui.classicindustrialization.item.EnergyStoringItem;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -30,6 +32,10 @@ public class ModEvents {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(LaserEntityModel.LAYER_LOCATION, LaserEntityModel::createBodyLayer);
+        event.registerLayerDefinition(ClassicIndustrialization.ClassicIndustrializationClient.OUTER_EQUIPMENT_LAYER,
+                () -> ClassicIndustrialization.ClassicIndustrializationClient.OUTER_EQUIPMENT_LAYER_DEF);
+        event.registerLayerDefinition(ClassicIndustrialization.ClassicIndustrializationClient.INNER_EQUIPMENT_LAYER,
+                () -> ClassicIndustrialization.ClassicIndustrializationClient.INNER_EQUIPMENT_LAYER_DEF);
     }
 
 }

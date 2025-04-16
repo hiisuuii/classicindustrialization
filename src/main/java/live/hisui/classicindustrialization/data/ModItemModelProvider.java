@@ -27,6 +27,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.HUGE_BATTERY.get());
         basicItem(ModItems.CREATIVE_BATTERY.get());
 
+        basicItem(ModItems.GRAVI_CHESTPLATE.get());
+        basicItem(ModItems.JETPACK.get());
+
         basicItem(ModItems.UNINSULATED_COPPER_CABLE.get());
         basicItem(ModItems.INSULATED_COPPER_CABLE.get());
         basicItem(ModItems.UNINSULATED_TIN_CABLE.get());

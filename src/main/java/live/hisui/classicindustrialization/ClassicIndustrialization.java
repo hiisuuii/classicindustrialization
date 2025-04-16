@@ -12,7 +12,10 @@ import live.hisui.classicindustrialization.util.client.InputHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.geom.LayerDefinitions;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.PlayerSkin;
@@ -22,6 +25,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -111,6 +115,17 @@ public class ClassicIndustrialization
 
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public static class ClassicIndustrializationClient {
+        public static final LayerDefinition OUTER_EQUIPMENT_LAYER_DEF = LayerDefinition.create(HumanoidArmorModel.createBodyLayer(
+                LayerDefinitions.OUTER_ARMOR_DEFORMATION), 64, 32);
+        public static final LayerDefinition INNER_EQUIPMENT_LAYER_DEF = LayerDefinition.create(HumanoidArmorModel.createBodyLayer(
+                LayerDefinitions.INNER_ARMOR_DEFORMATION), 64, 32);
+        public static final ModelLayerLocation OUTER_EQUIPMENT_LAYER = new ModelLayerLocation(ClassicIndustrialization.modLoc("equipment_layer_outer"), "outer_armor");
+        public static final ModelLayerLocation INNER_EQUIPMENT_LAYER = new ModelLayerLocation(ClassicIndustrialization.modLoc("equipment_layer_inner"), "inner_armor");
+
+    }
+
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
     public static class ClientGameEvents {
 
@@ -182,14 +197,14 @@ public class ClassicIndustrialization
             var context = event.getContext();
             PlayerRenderer renderer = event.getSkin(PlayerSkin.Model.WIDE);
             renderer.addLayer(new EquipmentRenderLayer<>(renderer,
-                    new HumanoidArmorModel(context.bakeLayer(ModelLayers.PLAYER_INNER_ARMOR)),
-                    new HumanoidArmorModel(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)),
+                    new HumanoidArmorModel(context.bakeLayer(ClassicIndustrializationClient.INNER_EQUIPMENT_LAYER)),
+                    new HumanoidArmorModel(context.bakeLayer(ClassicIndustrializationClient.OUTER_EQUIPMENT_LAYER)),
                     context.getModelManager()
                     ));
             renderer = event.getSkin(PlayerSkin.Model.SLIM);
             renderer.addLayer(new EquipmentRenderLayer<>(renderer,
-                    new HumanoidArmorModel(context.bakeLayer(ModelLayers.PLAYER_SLIM_INNER_ARMOR)),
-                    new HumanoidArmorModel(context.bakeLayer(ModelLayers.PLAYER_SLIM_OUTER_ARMOR)),
+                    new HumanoidArmorModel(context.bakeLayer(ClassicIndustrializationClient.INNER_EQUIPMENT_LAYER)),
+                    new HumanoidArmorModel(context.bakeLayer(ClassicIndustrializationClient.OUTER_EQUIPMENT_LAYER)),
                     context.getModelManager()
             ));
         }
@@ -203,8 +218,9 @@ public class ClassicIndustrialization
                             if(tintIndex == 1){
                                 return 0xFFFFFFFF;
                             } else if(tintIndex == 2){
-                                float hue = (90 + (Minecraft.getInstance().level.getGameTime() % 220)) * 48.0f;
-                                return Mth.hsvToRgb(( hue / 360.0f), 1.0F, 1.0F) | 0xFF000000;
+                                double SCALAR = 1.5f;
+                                double hue = ((440f * (1.0d/SCALAR)) + (System.currentTimeMillis() % (360 * (1.0d/SCALAR))));
+                                return Mth.hsvToRgb((float) (( hue / 360.0f) * (0.4f * SCALAR)), 0.55F, 1.0F) | 0xFF000000;
                             }
                         } else {
                             if(tintIndex == 1){

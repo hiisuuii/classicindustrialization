@@ -64,6 +64,11 @@ public class GraviChestplateItem extends EnergyStoringItem implements Equipable,
     }
 
     @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        return this.swapWithEquipmentSlot(this, level, player, hand);
+    }
+
+    @Override
     public EquipmentSlot getEquipmentSlot() {
         return EquipmentSlot.CHEST;
     }

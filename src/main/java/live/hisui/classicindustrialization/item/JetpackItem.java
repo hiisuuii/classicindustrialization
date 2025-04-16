@@ -83,6 +83,11 @@ public class JetpackItem  extends EnergyStoringItem implements Equipable, IToggl
     }
 
     @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        return this.swapWithEquipmentSlot(this, level, player, hand);
+    }
+
+    @Override
     public void appendHoverText(@Nonnull ItemStack stack, @Nonnull TooltipContext context, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flagIn) {
         tooltip.add(Optional.ofNullable(stack.get(ModDataComponents.ITEM_ENABLED)).orElse(false)
                 ? Component.literal("Hover Mode: Enabled").withStyle(ChatFormatting.GREEN)
