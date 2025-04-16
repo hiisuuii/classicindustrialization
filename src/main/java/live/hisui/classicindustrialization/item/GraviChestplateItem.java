@@ -30,7 +30,7 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Optional;
 
-public class GraviChestplateItem extends EnergyStoringItem implements Equipable, IToggleClick, INotArmorButRendersLikeArmor {
+public class GraviChestplateItem extends EnergyStoringItem implements IToggleClick, INotArmorButRendersLikeArmor {
     public GraviChestplateItem(int maxCapacity, int transferRate) {
         super(maxCapacity, transferRate);
     }
@@ -75,12 +75,12 @@ public class GraviChestplateItem extends EnergyStoringItem implements Equipable,
 
     @Override
     public Holder<SoundEvent> getEquipSound() {
-        return Equipable.super.getEquipSound();
+        return INotArmorButRendersLikeArmor.super.getEquipSound();
     }
 
     @Override
     public InteractionResultHolder<ItemStack> swapWithEquipmentSlot(Item item, Level level, Player player, InteractionHand hand) {
-        return Equipable.super.swapWithEquipmentSlot(item, level, player, hand);
+        return INotArmorButRendersLikeArmor.super.swapWithEquipmentSlot(item, level, player, hand);
     }
 
     @Override

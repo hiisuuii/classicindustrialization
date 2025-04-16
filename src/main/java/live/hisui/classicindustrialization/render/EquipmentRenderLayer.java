@@ -3,6 +3,7 @@ package live.hisui.classicindustrialization.render;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import live.hisui.classicindustrialization.ClassicIndustrialization;
+import live.hisui.classicindustrialization.item.INotArmorButRendersLikeArmor;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -14,6 +15,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Equipable;
 import net.minecraft.world.item.ItemStack;
 
@@ -47,7 +49,7 @@ public class EquipmentRenderLayer<T extends LivingEntity, M extends HumanoidMode
 
     private void renderArmorPiece(PoseStack poseStack, MultiBufferSource bufferSource, T livingEntity, EquipmentSlot slot, int packedLight, A p_model, float limbSwing, float limbSwingAmount, float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
         ItemStack itemstack = livingEntity.getItemBySlot(slot);
-        if (itemstack.getItem() instanceof Equipable armoritem) {
+        if (itemstack.getItem() instanceof INotArmorButRendersLikeArmor armoritem) {
             if (armoritem.getEquipmentSlot() == slot) {
                 this.getParentModel().copyPropertiesTo(p_model);
                 this.setPartVisibility(p_model, slot);

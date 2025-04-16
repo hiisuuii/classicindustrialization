@@ -25,7 +25,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
 
-public class JetpackItem  extends EnergyStoringItem implements Equipable, IToggleClick, INotArmorButRendersLikeArmor {
+public class JetpackItem  extends EnergyStoringItem implements IToggleClick, INotArmorButRendersLikeArmor {
     public static final int ENERGY_PER_TICK = 5;
     public JetpackItem(int maxCapacity, int transferRate) {
         super(maxCapacity, transferRate);
@@ -114,12 +114,12 @@ public class JetpackItem  extends EnergyStoringItem implements Equipable, IToggl
 
     @Override
     public Holder<SoundEvent> getEquipSound() {
-        return Equipable.super.getEquipSound();
+        return INotArmorButRendersLikeArmor.super.getEquipSound();
     }
 
     @Override
     public InteractionResultHolder<ItemStack> swapWithEquipmentSlot(Item item, Level level, Player player, InteractionHand hand) {
-        return Equipable.super.swapWithEquipmentSlot(item, level, player, hand);
+        return INotArmorButRendersLikeArmor.super.swapWithEquipmentSlot(item, level, player, hand);
     }
 
     @Override

@@ -1,4 +1,6 @@
 package live.hisui.classicindustrialization.item;
 
-public interface INotArmorButRendersLikeArmor {
+import net.minecraft.world.item.Equipable;
+
+public interface INotArmorButRendersLikeArmor extends Equipable {
 }
