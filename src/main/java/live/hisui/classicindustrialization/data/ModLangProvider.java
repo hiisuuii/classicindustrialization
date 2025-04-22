@@ -5,6 +5,7 @@ import live.hisui.classicindustrialization.ModItems;
 import live.hisui.classicindustrialization.util.Util;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -28,8 +29,6 @@ public class ModLangProvider extends LanguageProvider {
         addSimple(ModItems.VAJRA);
         addSimple(ModItems.SMALL_BATTERY);
         addSimple(ModItems.BASIC_BATTERY);
-        addSimple(ModItems.EVEN_BIGGER_BATTERY);
-        addSimple(ModItems.HUGE_BATTERY);
         addSimple(ModItems.LASER_RIFLE);
         addSimple(ModItems.UNINSULATED_COPPER_CABLE);
         addSimple(ModItems.INSULATED_COPPER_CABLE);
@@ -40,8 +39,37 @@ public class ModLangProvider extends LanguageProvider {
         addSimple(ModItems.BASIC_CIRCUIT);
         addSimple(ModItems.ADV_CIRCUIT);
         addSimple(ModItems.ADV_ALLOY);
+        addSimple(ModItems.SUPERCONDUCTOR);
+        addSimple(ModItems.RAW_TIN);
+        addSimple(ModItems.TIN_ORE);
+        addSimple(ModItems.DEEPSLATE_TIN_ORE);
+        addSimple(ModItems.TIN_INGOT);
+        addSimple(ModItems.RAW_TIN_BLOCK);
+        addSimple(ModItems.TIN_BLOCK);
+        addSimple(ModItems.BRONZE_INGOT);
+        addSimple(ModItems.BRONZE_BLOCK);
+        addSimple(ModItems.BRONZE_DUST);
+        addSimple(ModItems.COPPER_DUST);
+        addSimple(ModItems.GOLD_DUST);
+        addSimple(ModItems.IRON_DUST);
+        addSimple(ModItems.TIN_DUST);
+        addSimple(ModItems.CARBON_DUST);
+        addSimple(ModItems.CARBON_FIBRE);
+        addSimple(ModItems.CARBON_LUMP);
+        addSimple(ModItems.CARBON_PLATE);
+        addSimple(ModItems.GRAPHENE);
+        addSimple(ModItems.BASIC_SUBSTRATE);
+        addSimple(ModItems.ADV_SUBSTRATE);
+        addSimple(ModItems.CREATIVE_BATTERY);
+        add(ModItems.ELECTRIC_SWORD.get(), "NanoSaber");
+        add(ModItems.GRAVI_CHESTPLATE.get(), "Gravi Chestplate");
+        addSimple(ModItems.JETPACK);
+        add(ModItems.MIXED_INGOT.get(), "Mixed Metal Ingot");
         add("tooltip.classicindustrialization.energy_stored","%s/%s FE");
         add("itemgroup.classicindustrialization","Classic Industrialization");
+        add(ModItems.EVEN_BIGGER_BATTERY.get(), "Advanced Battery");
+        add(ModItems.HUGE_BATTERY.get(), "Energy Crystal");
+
     }
 
     private void addSimple(DeferredItem<Item> item){

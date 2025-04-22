@@ -1,16 +1,19 @@
 package live.hisui.classicindustrialization;
 
 import com.mojang.logging.LogUtils;
+import live.hisui.classicindustrialization.block.entity.machine.GeneratorBlockEntity;
 import live.hisui.classicindustrialization.component.ModDataComponents;
 import live.hisui.classicindustrialization.entity.client.LaserEntityRenderer;
 import live.hisui.classicindustrialization.item.EnergyStoringItem;
 import live.hisui.classicindustrialization.item.IToggleClick;
+import live.hisui.classicindustrialization.menu.GeneratorMenu;
 import live.hisui.classicindustrialization.network.ItemTogglePacket;
 import live.hisui.classicindustrialization.network.UpdateInputPacket;
 import live.hisui.classicindustrialization.render.EquipmentModel;
 import live.hisui.classicindustrialization.render.EquipmentRenderLayer;
 import live.hisui.classicindustrialization.util.client.InputHandler;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.geom.LayerDefinitions;
@@ -20,11 +23,17 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.resources.PlayerSkin;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
@@ -43,11 +52,14 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ClassicIndustrialization.MODID)
@@ -57,6 +69,20 @@ public class ClassicIndustrialization
     public static final String MODID = "classicindustrialization";
     // Directly reference a slf4j logger
     public  static final Logger LOGGER = LogUtils.getLogger();
+
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, MODID);
+
+    public static final Supplier<BlockEntityType<GeneratorBlockEntity>> GENERATOR_BE =
+            BLOCK_ENTITY_TYPES.register("generator", () -> BlockEntityType.Builder.of(
+                    GeneratorBlockEntity::new, ModBlocks.GENERATOR.get()).build(null));
+
+    public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(
+            BuiltInRegistries.MENU, MODID
+    );
+
+    public static final Supplier<MenuType<GeneratorMenu>> GENERATOR_MENU =
+            MENU_TYPES.register("generator", () -> new MenuType<>(GeneratorMenu::new, FeatureFlags.DEFAULT_FLAGS));
+
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
@@ -74,6 +100,8 @@ public class ClassicIndustrialization
         ModItems.register(modEventBus);
         ModDataComponents.register(modEventBus);
         ModEntities.register(modEventBus);
+        BLOCK_ENTITY_TYPES.register(modEventBus);
+        MENU_TYPES.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

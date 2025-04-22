@@ -1,5 +1,7 @@
 package live.hisui.classicindustrialization;
 
+import live.hisui.classicindustrialization.block.entity.machine.GeneratorBlockEntity;
+import live.hisui.classicindustrialization.block.machine.GeneratorBlock;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -26,6 +28,9 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final DeferredBlock<Block> BRONZE_BLOCK = register("bronze_block",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+
+    public static final DeferredBlock<Block> GENERATOR = register("generator",
+            () -> new GeneratorBlock(BlockBehaviour.Properties.of()));
 
     private static DeferredBlock<Block> register(String name, Supplier<Block> supp) {
         return BLOCKS.register(name, supp);

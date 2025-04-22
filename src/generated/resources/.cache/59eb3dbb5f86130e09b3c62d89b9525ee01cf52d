@@ -1,6 +1,7 @@
-// 1.21.1	2025-04-07T22:44:33.1896293	Loot Tables
+// 1.21.1	2025-04-21T21:37:36.4220488	Loot Tables
 240c7cb4d4dae6b86694e66a56339c51ad20c2a4 data/classicindustrialization/loot_table/blocks/bronze_block.json
 2820b24e0434d2b429eb04c1d399edf9431b3a07 data/classicindustrialization/loot_table/blocks/deepslate_tin_ore.json
+d3243d9d8cedfcb7cf2afbc01961ce32c85f819a data/classicindustrialization/loot_table/blocks/generator.json
 98ed0f8fdf0878d15dd15347e2cb8ab6994ce568 data/classicindustrialization/loot_table/blocks/raw_tin_block.json
 bf0f4b4783423e04a0899c12ba3366ada63c83b4 data/classicindustrialization/loot_table/blocks/tin_block.json
 33da8180725634b947992ec1b3b6f3d33d5a19f5 data/classicindustrialization/loot_table/blocks/tin_ore.json

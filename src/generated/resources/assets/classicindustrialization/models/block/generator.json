@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "classicindustrialization:block/generator_bottom",
+    "front": "classicindustrialization:block/generator_front",
+    "side": "classicindustrialization:block/generator_side",
+    "top": "classicindustrialization:block/generator_top"
+  }
+}

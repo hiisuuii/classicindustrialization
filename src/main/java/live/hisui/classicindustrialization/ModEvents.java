@@ -4,6 +4,9 @@ import live.hisui.classicindustrialization.capability.CustomComponentEnergyStora
 import live.hisui.classicindustrialization.component.ModDataComponents;
 import live.hisui.classicindustrialization.entity.client.LaserEntityModel;
 import live.hisui.classicindustrialization.item.EnergyStoringItem;
+import live.hisui.classicindustrialization.menu.GeneratorMenu;
+import live.hisui.classicindustrialization.screen.GeneratorScreen;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.world.item.Item;
@@ -12,12 +15,20 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 @EventBusSubscriber(modid = ClassicIndustrialization.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ModEvents {
+
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event){
+        event.register(ClassicIndustrialization.GENERATOR_MENU.get(),
+                (MenuScreens.ScreenConstructor<GeneratorMenu, GeneratorScreen<GeneratorMenu>>)GeneratorScreen::new);
+    }
 
     @SubscribeEvent
     public static void registerCapabilitiesEvent(RegisterCapabilitiesEvent event) {
@@ -28,6 +39,41 @@ public class ModEvents {
                             electricToolItem.maxCapacity, electricToolItem.transferRate), electricToolItem);
             }
         }
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ClassicIndustrialization.GENERATOR_BE.get(),
+                (be, context) -> {
+                    return new IEnergyStorage() {
+                        @Override
+                        public int receiveEnergy(int toReceive, boolean simulate) {
+                            return 0;
+                        }
+
+                        @Override
+                        public int extractEnergy(int toExtract, boolean simulate) {
+                            return 0;
+                        }
+
+                        @Override
+                        public int getEnergyStored() {
+                            return 0;
+                        }
+
+                        @Override
+                        public int getMaxEnergyStored() {
+                            return 0;
+                        }
+
+                        @Override
+                        public boolean canExtract() {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean canReceive() {
+                            return false;
+                        }
+                    };
+                }
+        );
     }
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {

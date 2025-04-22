@@ -10,12 +10,9 @@ import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.energy.IEnergyStorage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class ElectricToolItem extends EnergyStoringItem {
     protected int ENERGY_TO_MINE = 200;
