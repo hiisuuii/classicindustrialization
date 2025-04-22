@@ -20,8 +20,8 @@ public class GeneratorMenu extends AbstractContainerMenu {
         this.container = furnaceContainer;
 
 
-        this.addSlot(new Slot(container, 0, 56, 17));
-        this.addSlot(new Slot(container, 1, 56, 53));
+        this.addSlot(new Slot(container, 0, 56, 53)); //fuel
+        this.addSlot(new Slot(container, 1, 56, 17)); //chrg
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
@@ -47,18 +47,20 @@ public class GeneratorMenu extends AbstractContainerMenu {
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
-            if (!this.moveItemStackTo(itemstack1, 2, 38, true)) {
-                return ItemStack.EMPTY;
-            }
+
+            ClassicIndustrialization.LOGGER.debug("Slot idx: {}, ItemStack: {}", index, itemstack1);
 
             slot.onQuickCraft(itemstack1, itemstack);
             if (index != 1 && index != 0) {
                 if ((itemstack1.getItem() instanceof EnergyStoringItem)) {
-                    if (!this.moveItemStackTo(itemstack1, 1, 1, false)) {
+                    ClassicIndustrialization.LOGGER.debug("Trying to move stack to top slot");
+                    if (!this.moveItemStackTo(itemstack1, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (AbstractFurnaceBlockEntity.isFuel(itemstack1)) {
-                    if (!this.moveItemStackTo(itemstack1, 0, 0, false)) {
+                    ClassicIndustrialization.LOGGER.debug("Trying to move stack to bottom slot");
+                    if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
+                        ClassicIndustrialization.LOGGER.debug("Failed to move stack for some reason");
                         return ItemStack.EMPTY;
                     }
                 } else if (index >= 2 && index < 29) {
