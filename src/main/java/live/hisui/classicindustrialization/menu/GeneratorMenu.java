@@ -53,14 +53,11 @@ public class GeneratorMenu extends AbstractContainerMenu {
             slot.onQuickCraft(itemstack1, itemstack);
             if (index != 1 && index != 0) {
                 if ((itemstack1.getItem() instanceof EnergyStoringItem)) {
-                    ClassicIndustrialization.LOGGER.debug("Trying to move stack to top slot");
                     if (!this.moveItemStackTo(itemstack1, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (AbstractFurnaceBlockEntity.isFuel(itemstack1)) {
-                    ClassicIndustrialization.LOGGER.debug("Trying to move stack to bottom slot");
                     if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
-                        ClassicIndustrialization.LOGGER.debug("Failed to move stack for some reason");
                         return ItemStack.EMPTY;
                     }
                 } else if (index >= 2 && index < 29) {
