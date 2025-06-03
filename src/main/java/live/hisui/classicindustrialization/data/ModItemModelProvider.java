@@ -26,6 +26,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.EVEN_BIGGER_BATTERY.get());
         basicItem(ModItems.HUGE_BATTERY.get());
         basicItem(ModItems.CREATIVE_BATTERY.get());
+//        basicItem(ModItems.FLUID_CELL.get());
 
         basicItem(ModItems.GRAVI_CHESTPLATE.get());
         basicItem(ModItems.JETPACK.get());
@@ -75,5 +76,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.ELECTRIC_SWORD.get())
                 .texture("layer1",ClassicIndustrialization.modLoc("item/electric_sword_blade"))
                 .texture("layer2",ClassicIndustrialization.modLoc("item/electric_sword_overlay"));
+        basicItem(ModItems.FLUID_CELL.get())
+                .texture("layer1",ClassicIndustrialization.modLoc("item/fluid_cell_mask"));
+
     }
 }

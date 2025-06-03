@@ -11,8 +11,10 @@ import live.hisui.classicindustrialization.network.ItemTogglePacket;
 import live.hisui.classicindustrialization.network.UpdateInputPacket;
 import live.hisui.classicindustrialization.render.EquipmentModel;
 import live.hisui.classicindustrialization.render.EquipmentRenderLayer;
+import live.hisui.classicindustrialization.render.FluidCellRenderer;
 import live.hisui.classicindustrialization.util.client.InputHandler;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.model.HumanoidArmorModel;
@@ -20,9 +22,13 @@ import net.minecraft.client.model.geom.LayerDefinitions;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.PlayerSkin;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -34,6 +40,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.IEventBus;
@@ -44,13 +52,22 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.ClientHooks;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.client.model.DynamicFluidContainerModel;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.event.AnvilUpdateEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -137,6 +154,8 @@ public class ClassicIndustrialization
         }
     }
 
+
+
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
@@ -189,26 +208,19 @@ public class ClassicIndustrialization
         public static void onMouseEvent(ScreenEvent.MouseButtonPressed.Pre event){
             Minecraft mc = Minecraft.getInstance();
             if(event.getScreen() == null || !(event.getScreen() instanceof AbstractContainerScreen<?> screen)) {
-                ClassicIndustrialization.LOGGER.debug("Screen is container: {}", event.getScreen() instanceof AbstractContainerScreen<?>);
-                ClassicIndustrialization.LOGGER.debug("Screen null: {}", event.getScreen() == null);
                 return;
             }
             boolean rightClicked = event.getButton() == GLFW.GLFW_MOUSE_BUTTON_RIGHT;
             try {
                 if(rightClicked && screen.getSlotUnderMouse() != null){
                     Slot slot = screen.getSlotUnderMouse();
-                    ClassicIndustrialization.LOGGER.debug("Slot idx: {}", slot.index);
                     ItemStack stack = slot.getItem();
                     if(stack.getItem() instanceof IToggleClick){
-                        ClassicIndustrialization.LOGGER.debug("Item can toggle click");
                         PacketDistributor.sendToServer(new ItemTogglePacket(slot.index));
-                        ClassicIndustrialization.LOGGER.debug("Toggle packet sent");
                         event.setCanceled(true);
                     }
                 } else if(!rightClicked) {
-                    ClassicIndustrialization.LOGGER.debug("Not right click");
                 } else if(screen.getSlotUnderMouse() == null) {
-                    ClassicIndustrialization.LOGGER.debug("Slot is null");
                 }
             } catch (Exception e){
                 ClassicIndustrialization.LOGGER.error("Click error: ", e);
@@ -220,6 +232,30 @@ public class ClassicIndustrialization
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
+        private static final ItemColor BUCKET_COLOR = new ItemColor() {
+            @Override
+            public int getColor(ItemStack stack, int tintIndex) {
+                if (tintIndex != 1) return 0xFFFFFFFF;
+                return FluidUtil.getFluidContained(stack)
+                        .map(fluidStack -> {
+                            FluidType fluid = fluidStack.getFluidType();
+                            if(fluid.equals(NeoForgeMod.LAVA_TYPE.value())) { return 0xFFff6000; }
+                            return IClientFluidTypeExtensions.of(fluidStack.getFluid()).getTintColor(fluidStack);
+                        })
+                        .orElse(0x00FFFFFF);
+            }
+        };
+
+        @SubscribeEvent
+        public static void registerClientExtensions(RegisterClientExtensionsEvent event){
+            event.registerItem(new IClientItemExtensions() {
+                @Override
+                public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                    return new FluidCellRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(),
+                            Minecraft.getInstance().getEntityModels());
+                }
+            }, ModItems.FLUID_CELL.get());
+        }
 
         @SubscribeEvent
         public static void registerLayers(EntityRenderersEvent.AddLayers event){
@@ -240,6 +276,8 @@ public class ClassicIndustrialization
 
         @SubscribeEvent
         public static void registerItemColors(RegisterColorHandlersEvent.Item event){
+//            event.register(BUCKET_COLOR, ModItems.FLUID_CELL.get());
+
             event.register(
                     (stack, tintIndex) -> {
                         boolean enabled = Optional.ofNullable(stack.get(ModDataComponents.ITEM_ENABLED)).orElse(false);
@@ -260,6 +298,7 @@ public class ClassicIndustrialization
                         }
                         return -1;
                     }, ModItems.ELECTRIC_SWORD.get());
+
             event.register((stack, idx) -> {
                 if(stack.getItem() instanceof EnergyStoringItem energyStoringItem){
                     return 0xFF000000 | Mth.hsvToRgb(0.0f,

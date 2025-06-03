@@ -10,6 +10,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -17,7 +18,11 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.ScreenEvent;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.energy.EnergyStorage;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.event.AnvilUpdateEvent;
+import net.neoforged.neoforge.fluids.capability.templates.FluidHandlerItemStackSimple;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -39,40 +44,12 @@ public class ModEvents {
                             electricToolItem.maxCapacity, electricToolItem.transferRate), electricToolItem);
             }
         }
+        event.registerItem(Capabilities.FluidHandler.ITEM,
+                (stack, ctx) -> {
+                    return new FluidHandlerItemStackSimple(ModDataComponents.FLUID_STORAGE, stack, 1000);
+                }, ModItems.FLUID_CELL.get());
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ClassicIndustrialization.GENERATOR_BE.get(),
-                (be, context) -> {
-                    return new IEnergyStorage() {
-                        @Override
-                        public int receiveEnergy(int toReceive, boolean simulate) {
-                            return 0;
-                        }
-
-                        @Override
-                        public int extractEnergy(int toExtract, boolean simulate) {
-                            return 0;
-                        }
-
-                        @Override
-                        public int getEnergyStored() {
-                            return 0;
-                        }
-
-                        @Override
-                        public int getMaxEnergyStored() {
-                            return 0;
-                        }
-
-                        @Override
-                        public boolean canExtract() {
-                            return false;
-                        }
-
-                        @Override
-                        public boolean canReceive() {
-                            return false;
-                        }
-                    };
-                }
+                (be, direction) -> be.getEnergyStorage()
         );
     }
     @SubscribeEvent
@@ -83,5 +60,6 @@ public class ModEvents {
         event.registerLayerDefinition(ClassicIndustrialization.ClassicIndustrializationClient.INNER_EQUIPMENT_LAYER,
                 () -> ClassicIndustrialization.ClassicIndustrializationClient.INNER_EQUIPMENT_LAYER_DEF);
     }
+
 
 }

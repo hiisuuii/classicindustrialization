@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.fluids.SimpleFluidContent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -175,6 +176,10 @@ public class ModItems {
     public static final DeferredItem<Item> GRAPHENE = register("graphene",
             () -> new Item(new Item.Properties()));
     //endregion
+
+    public static final DeferredItem<Item> FLUID_CELL = register("fluid_cell",
+            () -> new FluidCellItem(new Item.Properties().component(ModDataComponents.FLUID_STORAGE.get(),
+                    SimpleFluidContent.EMPTY)));
 
     public static final DeferredItem<Item> TIN_ORE = register("tin_ore",
             () -> new BlockItem(ModBlocks.TIN_ORE.get(), new Item.Properties()));

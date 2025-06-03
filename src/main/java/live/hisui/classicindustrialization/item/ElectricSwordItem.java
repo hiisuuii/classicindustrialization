@@ -74,6 +74,7 @@ public class ElectricSwordItem extends ElectricToolItem {
         return super.canPerformAction(stack, itemAbility);
     }
 
+
     public static ItemAttributeModifiers createAttributes(float dmg, float spd) {
         return ItemAttributeModifiers.builder()
                 .add(

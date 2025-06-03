@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-15T21:57:09.9417338	Item Models: classicindustrialization
+// 1.21.1	2025-04-28T21:17:08.7047563	Item Models: classicindustrialization
 8c0e39ddd55228014266244349dc725766f8a43a assets/classicindustrialization/models/item/advanced_chainsaw.json
 7f9c87390107f53ee3c2a0af79c97b9ba503ce45 assets/classicindustrialization/models/item/advanced_circuit.json
 af2c500f0b2c02ce2ecf4f9d08c415947e86d95f assets/classicindustrialization/models/item/advanced_drill.json
@@ -22,6 +22,7 @@ fb2190525c4e10ed0503ad9c44a447d34bdb593e assets/classicindustrialization/models/
 aef5dfd4435586fd5df852f7c48cbc2859d085b0 assets/classicindustrialization/models/item/diamond_drill.json
 2d211a6f7298098000399bd4ea797b9f19c73270 assets/classicindustrialization/models/item/drill.json
 06642bddd924ea98b414040acf6996fad497944a assets/classicindustrialization/models/item/electric_sword.json
+d91a9f13779e1786d513132d6f497d5c640f4639 assets/classicindustrialization/models/item/fluid_cell.json
 5edfff1816564ec91816963a8d64ef32803cd1cc assets/classicindustrialization/models/item/gold_dust.json
 c1a47fa3ee1cb5b5d7c2a6f94307f70cde1b2033 assets/classicindustrialization/models/item/graphene.json
 8b6b52ed5df3b8e1c4689efca6697d45da1be99a assets/classicindustrialization/models/item/gravichest.json

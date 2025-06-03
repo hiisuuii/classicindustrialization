@@ -2,22 +2,27 @@ package live.hisui.classicindustrialization.menu;
 
 import live.hisui.classicindustrialization.ClassicIndustrialization;
 import live.hisui.classicindustrialization.item.EnergyStoringItem;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.*;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
-import org.jetbrains.annotations.Nullable;
 
 public class GeneratorMenu extends AbstractContainerMenu {
 
     private final Container container;
+    private final ContainerData data;
 
-    public GeneratorMenu(int containerId, Inventory playerInventory, Container furnaceContainer){
+    public GeneratorMenu(int containerId, Inventory playerInventory, Container furnaceContainer, ContainerData data){
         super(ClassicIndustrialization.GENERATOR_MENU.get(), containerId);
         this.container = furnaceContainer;
+        this.data = data;
 
 
         this.addSlot(new Slot(container, 0, 56, 53)); //fuel
@@ -34,11 +39,35 @@ public class GeneratorMenu extends AbstractContainerMenu {
         }
     }
 
-    public GeneratorMenu(int containerId, Inventory playerInventory) {
-        this(containerId,playerInventory,new SimpleContainer(2));
+    public GeneratorMenu(int containerId, Inventory playerInventory, Container furnaceContainer){
+        this(containerId, playerInventory, furnaceContainer, new SimpleContainerData(4));
     }
 
+    public GeneratorMenu(int containerId, Inventory playerInventory) {
+        this(containerId,playerInventory,new SimpleContainer(2), new SimpleContainerData(4));
+    }
 
+    public float getEnergyProgress(){
+        int i = this.data.get(2);
+        ClassicIndustrialization.LOGGER.debug("Menu energyStored: {}", i);
+        int j = this.data.get(3);
+        ClassicIndustrialization.LOGGER.debug("Menu energyCapacity: {}", j);
+        return j != 0 && i != 0 ? Mth.clamp((float)i / (float)j, 0.0F, 1.0F) : 0.0F;
+    }
+
+    public float getLitProgress() {
+        int i = this.data.get(1);
+        if (i == 0) {
+            i = 200;
+        }
+        ClassicIndustrialization.LOGGER.debug("Menu litProgress: {}", i);
+
+        return Mth.clamp((float)this.data.get(0) / (float)i, 0.0F, 1.0F);
+    }
+
+    public boolean isLit() {
+        return this.data.get(0) > 0;
+    }
 
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
